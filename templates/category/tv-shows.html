@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>TV Shows Categories</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="stylesheet" href="{{ url_for('static', filename='css/tv-shows.css') }}">
+</head>
+<body>
+     <header>
+            <div class="logo">
+                F2PMovies
+
+            </div>
+           <div class="nav-links" id="navLinks">
+        <a href="/web">Home</a>
+        <a href="/about us">About Us</a>
+        <a href="/contacts">Contact</a>
+        <a href="/login" id="loginBtn">Login</a>
+      </div>
+    </header> 
+        
+        <div class="search-bar">
+            <input type="text" placeholder="Search for movies or TV shows...">
+            <button type="submit">Search</button>
+            </div>
+  <h1>TV Shows</h1>
+
+  <!-- Repeat this wrapper for 4 rows -->
+  <div class="card-scroll-wrapper">
+    <button class="scroll-btn left" onclick="scrollCards(this, -1)"></button>
+    <div class="card-scroll">
+      <div class="card shadowed"><a href=" /shadowed whispers  ">Shadowed Whispers</a></div>
+      <div class="card silence"><a href=" /edge of silence  ">Edge of Silence</a></div>
+      <div class="card wilds"><a href=" /lost in the wilds  ">Lost in the Wilds</a></div>
+      <div class="card hearts"><a href=" /hearts unwritten  ">Hearts Unwritten</a></div>
+      <div class="card laugh"><a href=" /laugh riot  ">Laugh Riot</a></div>
+      <div class="card broken"><a href=" /broken strings  ">Broken Strings</a></div>
+      <div class="card galactic"><a href=" /galactic drift  ">Galactic Drift</a></div>
+      <div class="card mystic"><a href=" /mystic realms  ">Mystic Realms</a></div>
+    </div>
+    <button class="scroll-btn right" onclick="scrollCards(this, 1)"></button>
+  </div>
+
+  <div class="card-scroll-wrapper">
+    <button class="scroll-btn left" onclick="scrollCards(this, -1)"></button>
+    <div class="card-scroll">
+      <div class="card urban"><a href=" /urban pursuit  ">Urban Pursuit</a></div>
+      <div class="card midnight"><a href=" /midnight evidence  ">Midnight Evidence</a></div>
+      <div class="card vanished"><a href=" /the vanished key  ">The Vanished Key</a></div>
+      <div class="card homebound"><a href=" /homebound tales  ">Homebound Tales</a></div>
+      <div class="card pixel"><a href=" /pixel dreams  ">Pixel Dreams</a></div>
+      <div class="card hidden"><a href=" /hidden truths  ">Hidden Truths</a></div>
+      <div class="card veil"><a href=" /beyond the veil  ">Beyond the Veil</a></div>
+      <div class="card campus"><a href=" /campus diaries  ">Campus Diaries</a></div>
+    </div>
+    <button class="scroll-btn right" onclick="scrollCards(this, 1)"></button>
+    </div>
+
+    <div class="card-scroll-wrapper">
+    <button class="scroll-btn left" onclick="scrollCards(this, -1)"></button>
+    <div class="card-scroll">
+      <div class="card frontline"><a href=" /silent frontlines  ">Silent Frontlines</a></div>
+      <div class="card echoes"><a href=" /echoes of time  ">Echoes of Time</a></div>
+      <div class="card rhythm"><a href=" /rhythm street  ">Rhythm Street</a></div>
+      <div class="card victory"><a href=" /victory lane  ">Victory Lane</a></div>
+      <div class="card pulse"><a href=" /critical pulse  ">Critical Pulse</a></div>
+      <div class="card justice"><a href=" /justice bound  ">Justice Bound</a></div>
+      <div class="card power"><a href=" /power play  ">Power Play</a></div>
+      <div class="card crown"><a href=" /crown & shadows  ">Crown & Shadows</a></div>
+    </div>
+    <button class="scroll-btn right" onclick="scrollCards(this, 1)"></button>
+    </div>
+
+    <div class="card-scroll-wrapper">
+    <button class="scroll-btn left" onclick="scrollCards(this, -1)"></button>
+    <div class="card-scroll">
+      <div class="card covert"><a href=" /covert signals  ">Covert Signals</a></div>
+      <div class="card dusty"><a href=" /dusty trails  ">Dusty Trails</a></div>
+      <div class="card roommates"><a href=" /roommates united  ">Roommates United</a></div>
+      <div class="card spectral"><a href=" /spectral files  ">Spectral Files</a></div>
+      <div class="card tales"><a href=" /tales unfolded  ">Tales Unfolded</a></div>
+      <div class="card love"><a href=" /love & laughter  ">Love & Laughter</a></div>
+      <div class="card maze"><a href=" /mind maze  ">Mind Maze</a></div>
+      <div class="card growing"><a href=" /growing pains  ">Growing Pains</a></div>
+    </div>
+    <button class="scroll-btn right" onclick="scrollCards(this, 1)"></button>
+  </div>
+
+  <script>
+    function scrollCards(button, direction) {
+      const wrapper = button.closest('.card-scroll-wrapper');
+      const container = wrapper.querySelector('.card-scroll');
+      const scrollAmount = 300;
+      container.scrollBy({ left: direction * scrollAmount, behavior: 'smooth' });
+    }
+  </script>
+  <script>
+  document.querySelectorAll('.card-scroll').forEach(container => {
+    container.addEventListener('wheel', function(e) {
+      const rect = container.getBoundingClientRect();
+      const mouseY = e.clientY;
+
+      // Trigger only if mouse is near the scrollbar (bottom 20px)
+      if (mouseY > rect.bottom - 20) {
+        e.preventDefault();
+
+        const speed = 1500; // higher = faster
+        const scrollAmount = e.deltaY > 0 ? speed : -speed;
+
+        container.scrollBy({
+          left: scrollAmount,
+          behavior: 'smooth' // use 'auto' if too slow
+        });
+      }
+    }, { passive: false });
+  });
+</script>
+</body>
+</html>

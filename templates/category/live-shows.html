@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Live Shows</title>
+     <link rel="stylesheet" href="{{ url_for('static', filename='css/live-shows.css') }}">
+</head>
+<body>
+     <header>
+            <div class="logo">
+                F2PMovies
+
+            </div>
+    <div class="nav-links" id="navLinks">
+        <a href="/web">Home</a>
+        <a href="/about us">About Us</a>
+        <a href="/contacts">Contact</a>
+        <a href="/login" id="loginBtn">Login</a>
+      </div>
+        
+    </header> 
+        
+        <div class="search-bar">
+            <input type="text" placeholder="Search for movies or TV shows...">
+            <button type="submit">Search</button>
+        </div>
+    <h1>Live Shows</h1>
+ <!-- ROW 1 -->
+<div class="card-scroll-wrapper">
+  <button class="scroll-btn left" onclick="scrollCards(this, -1)"></button>
+  <div class="card-scroll">
+    <div class="card aurora"><a href=" /aurora nights ">Aurora Nights</a></div>
+    <div class="card echoes"><a href=" /echoes of eden ">Echoes of Eden</a></div>
+    <div class="card phantom"><a href=" /phantom encore ">Phantom Encore</a></div>
+    <div class="card velvet"><a href=" /velvet horizon ">Velvet Horizon</a></div>
+    <div class="card sonic"><a href=" /sonic voyage ">Sonic Voyage</a></div>
+    <div class="card stellar"><a href=" /stellar parade ">Stellar Parade</a></div>
+    <div class="card moonlit"><a href=" /moonlit groove ">Moonlit Groove</a></div>
+    <div class="card urban"><a href=" /urban pulse ">Urban Pulse</a></div>
+  </div>
+  <button class="scroll-btn right" onclick="scrollCards(this, 1)"></button>
+</div>
+
+<!-- ROW 2 -->
+<div class="card-scroll-wrapper">
+  <button class="scroll-btn left" onclick="scrollCards(this, -1)"></button>
+  <div class="card-scroll">
+    <div class="card galaxy"><a href=" /galaxy jam ">Galaxy Jam</a></div>
+    <div class="card echo"><a href=" /echo chamber ">Echo Chamber</a></div>
+    <div class="card skyline"><a href=" /skyline sessions ">Skyline Sessions</a></div>
+    <div class="card retro"><a href=" /retro spectrum ">Retro Spectrum</a></div>
+    <div class="card zenith"><a href=" /zenith fest ">Zenith Fest</a></div>
+    <div class="card solstice"><a href=" /solstice sound ">Solstice Sound</a></div>
+    <div class="card nebula"><a href=" /nebula nights ">Nebula Nights</a></div>
+    <div class="card limelight"><a href=" /limelight legends ">Limelight Legends</a></div>
+  </div>
+  <button class="scroll-btn right" onclick="scrollCards(this, 1)"></button>
+</div>
+
+<!-- ROW 3 -->
+<div class="card-scroll-wrapper">
+  <button class="scroll-btn left" onclick="scrollCards(this, -1)"></button>
+  <div class="card-scroll">
+    <div class="card aurora"><a href=" /aurora pulse ">Aurora Pulse</a></div>
+    <div class="card echoes"><a href=" /echo summit ">Echo Summit</a></div>
+    <div class="card sonic"><a href=" /sonic bloom ">Sonic Bloom</a></div>
+    <div class="card stellar"><a href=" /stellar stage ">Stellar Stage</a></div>
+    <div class="card phantom"><a href=" /phantom groove ">Phantom Groove</a></div>
+    <div class="card velvet"><a href=" /velvet dusk ">Velvet Dusk</a></div>
+    <div class="card urban"><a href=" /urban rhythm ">Urban Rhythm</a></div>
+    <div class="card galaxy"><a href=" /galaxy groove ">Galaxy Groove</a></div>
+  </div>
+  <button class="scroll-btn right" onclick="scrollCards(this, 1)"></button>
+</div>
+
+<!-- ROW 4 -->
+<div class="card-scroll-wrapper">
+  <button class="scroll-btn left" onclick="scrollCards(this, -1)"></button>
+  <div class="card-scroll">
+    <div class="card echo"><a href=" /echo fest ">Echo Fest</a></div>
+    <div class="card skyline"><a href=" /skyline groove ">Skyline Groove</a></div>
+    <div class="card retro"><a href=" /retro nights ">Retro Nights</a></div>
+    <div class="card zenith"><a href=" /zenith groove ">Zenith Groove</a></div>
+    <div class="card solstice"><a href=" /solstice jam ">Solstice Jam</a></div>
+    <div class="card nebula"><a href=" /nebula groove ">Nebula Groove</a></div>
+    <div class="card limelight"><a href=" /limelight jam ">Limelight Jam</a></div>
+    <div class="card aurora"><a href=" /aurora groove ">Aurora Groove</a></div>
+  </div>
+  <button class="scroll-btn right" onclick="scrollCards(this, 1)"></button>
+</div>
+
+    </div>
+    <script>
+  function scrollCards(button, direction) {
+    const scrollContainer = button.parentElement.querySelector('.card-scroll');
+    const scrollAmount = 220;
+    scrollContainer.scrollBy({
+      left: scrollAmount * direction,
+      behavior: 'smooth'
+    });
+  }
+</script>
+<script>
+  document.querySelectorAll('.card-scroll').forEach(container => {
+    container.addEventListener('wheel', function(e) {
+      const rect = container.getBoundingClientRect();
+      const mouseY = e.clientY;
+
+      // Trigger only if mouse is near the scrollbar (bottom 20px)
+      if (mouseY > rect.bottom - 20) {
+        e.preventDefault();
+
+        const speed = 1500; // higher = faster
+        const scrollAmount = e.deltaY > 0 ? speed : -speed;
+
+        container.scrollBy({
+          left: scrollAmount,
+          behavior: 'smooth' // use 'auto' if too slow
+        });
+      }
+    }, { passive: false });
+  });
+</script>
+
+</body>
+</html>

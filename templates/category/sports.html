@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>sports</title>
+     <link rel="stylesheet" href="{{ url_for('static', filename='css/sports.css') }}">
+</head>
+<body>
+    <div class="header">
+        <header>
+            <div class="logo">
+                F2PMovies
+
+            </div>
+           <div class="nav-links">
+       <div class="nav-links" id="navLinks">
+        <a href="/web">Home</a>
+        <a href="/about us">About Us</a>
+        <a href="/contacts">Contact</a>
+        <a href="/login" id="loginBtn">Login</a>
+      </div>
+    </header> 
+        
+        <div class="search-bar">
+            <input type="text" placeholder="Search for movies or TV shows...">
+            <button type="submit">Search</button>
+        </div>
+    <h1>sports</h1>
+    <!-- Row 1 -->
+<div class="card-scroll-wrapper">
+  <button class="scroll-btn left" onclick="scrollCards(this, -1)"></button>
+  <div class="card-scroll">
+    <div class="card olympics"><a href=" /summer olympics ">Summer Olympics</a></div>
+    <div class="card winter"><a href=" /winter olympics ">Winter Olympics</a></div>
+    <div class="card fifa"><a href=" /fifa world cup ">FIFA World Cup</a></div>
+    <div class="card uefa"><a href=" /UEFA European Championship ">UEFA Euro</a></div>
+    <div class="card cricket"><a href=" /cricket world cup ">Cricket World Cup</a></div>
+    <div class="card rugby"><a href=" /rugby world cup ">Rugby World Cup</a></div>
+    <div class="card t20"><a href=" /icc t20 world cup ">ICC T20 World Cup</a></div>
+    <div class="card african"><a href=" /african cup of nations ">African Cup of Nations</a></div>
+  </div>
+  <button class="scroll-btn right" onclick="scrollCards(this, 1)"></button>
+</div>
+
+<!-- Row 2 -->
+<div class="card-scroll-wrapper">
+  <button class="scroll-btn left" onclick="scrollCards(this, -1)"></button>
+  <div class="card-scroll">
+    <div class="card asian"><a href=" /asian games ">Asian Games</a></div>
+    <div class="card commonwealth"><a href=" /commonwealth games ">Commonwealth Games</a></div>
+    <div class="card panam"><a href=" /pan american games ">Pan American Games</a></div>
+    <div class="card superbowl"><a href=" /super bowl ">Super Bowl</a></div>
+    <div class="card nba"><a href=" /nba finals ">NBA Finals</a></div>
+    <div class="card stanley"><a href=" /stanley cup finals ">Stanley Cup Finals</a></div>
+    <div class="card worldseries"><a href=" /world series ">World Series</a></div>
+    <div class="card ipl"><a href=" /indian premier league ">Indian Premier League</a></div>
+  </div>
+  <button class="scroll-btn right" onclick="scrollCards(this, 1)"></button>
+</div>
+
+<!-- Row 3 -->
+<div class="card-scroll-wrapper">
+  <button class="scroll-btn left" onclick="scrollCards(this, -1)"></button>
+  <div class="card-scroll">
+    <div class="card afc"><a href=" /afc asian cup ">AFC Asian Cup</a></div>
+    <div class="card afl"><a href=" /afl grand final ">AFL Grand Final</a></div>
+    <div class="card olymparathon"><a href=" /olympic marathon ">Olympic Marathon</a></div>
+    <div class="card boston"><a href=" /boston marathon ">Boston Marathon</a></div>
+    <div class="card tour"><a href=" /tour de france ">Tour de France</a></div>
+    <div class="card giro"><a href=" /giro d italia ">Giro d’Italia</a></div>
+    <div class="card wimbledon"><a href=" /wimbledon ">Wimbledon</a></div>
+    <div class="card usopen"><a href=" /us open tennis ">US Open (Tennis)</a></div>
+  </div>
+  <button class="scroll-btn right" onclick="scrollCards(this, 1)"></button>
+</div>
+
+<!-- Row 4 -->
+<div class="card-scroll-wrapper">
+  <button class="scroll-btn left" onclick="scrollCards(this, -1)"></button>
+  <div class="card-scroll">
+    <div class="card french"><a href=" /french open ">French Open</a></div>
+    <div class="card ausopen"><a href=" /australian open ">Australian Open</a></div>
+    <div class="card masters"><a href=" /masters golf ">The Masters (Golf)</a></div>
+    <div class="card ryder"><a href=" /ryder cup ">Ryder Cup</a></div>
+    <div class="card f1"><a href=" /formula one grand prix ">Formula One Grand Prix</a></div>
+    <div class="card monaco"><a href=" /monaco grand prix ">Monaco Grand Prix</a></div>
+    <div class="card lemans"><a href=" /24 hours of le mans ">24 Hours of Le Mans</a></div>
+    <div class="card boxing"><a href=" /boxing heavyweight championship ">Boxing Heavyweight Championship</a></div>
+  </div>
+  <button class="scroll-btn right" onclick="scrollCards(this, 1)"></button>
+</div>
+<script>
+  function scrollCards(button, direction) {
+    const scrollContainer = button.parentElement.querySelector('.card-scroll');
+    const scrollAmount = 320; // Adjust depending on card width
+    scrollContainer.scrollBy({
+      left: scrollAmount * direction,
+      behavior: 'smooth'
+    });
+  }
+</script>
+<script>
+  document.querySelectorAll('.card-scroll').forEach(container => {
+    container.addEventListener('wheel', function(e) {
+      const rect = container.getBoundingClientRect();
+      const mouseY = e.clientY;
+
+      // Trigger only if mouse is near the scrollbar (bottom 20px)
+      if (mouseY > rect.bottom - 20) {
+        e.preventDefault();
+
+        const speed = 1500; // higher = faster
+        const scrollAmount = e.deltaY > 0 ? speed : -speed;
+
+        container.scrollBy({
+          left: scrollAmount,
+          behavior: 'smooth' // use 'auto' if too slow
+        });
+      }
+    }, { passive: false });
+  });
+</script>
+
+</body>
+</html>

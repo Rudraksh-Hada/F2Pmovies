@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>F2PMovies</title>
+  <link rel="stylesheet" href="static/home page.css" />
+  
+</head>
+<body>
+  <div class="header">
+    <header>
+      <div class="logo">F2PMovies</div>
+      <div class="nav-links" id="navLinks">
+        <a href="/web">Home</a>
+        <a href="/about us">About Us</a>
+        <a href="/contacts">Contact</a>
+        <a href="/login" id="loginBtn">Login</a>
+      </div>
+    </header>
+
+    <div class="search-bar">
+      <form id="searchForm" action="/search" method="GET">
+        <input
+          type="text"
+          id="searchInput"
+          name="query"
+          placeholder="Search for movies or TV shows..."
+          autocomplete="off"
+          required
+        />
+        <button type="submit">Search</button>
+      </form>
+      <div id="suggestions" class="suggestions"></div>
+    </div>
+
+    <p>
+      Welcome to F2PMovies, your free source for the latest movies and TV shows.
+      F2PMovies is a free movie and TV show streaming website that offers a wide range of content for users to enjoy.
+      With a user-friendly interface and a vast library of movies and TV shows, F2PMovies provides an easy way to watch your favorite content without any cost.
+    </p>
+
+    <div class="categories">
+      <a href="/movies" class="movies">Movies</a>
+      <a href="/tv-shows" class="tv-shows">TV Shows</a>
+      <a href="/anime" class="anime">Anime</a>
+      <a href="/live-shows" class="live-shows">Live Shows</a>
+      <a href="/sports" class="sports">Sports</a>
+      <div class="container" onclick="myFunction(this)">
+        <div class="bar1"></div>
+        <div class="bar2"></div>
+        <div class="bar3"></div>
+      </div>
+    </div>
+
+    <div class="card-scroll-wrapper">
+      <button class="scroll-btn left"></button>
+
+      <div class="card-scroll">
+        <div class="card nebula"><a href="/nebula drift">Nebula Drift</a></div>
+        <div class="card quantum"><a href="/quantum shadows">Quantum Shadows</a></div>
+        <div class="card algorithm"><a href="/the last algorithm">The Last Algorithm</a></div>
+        <div class="card echoes"><a href="/echoes of tomorrow">Echoes of Tomorrow</a></div>
+        <div class="card starlight"><a href="/starlight protocol">Starlight Protocol</a></div>
+        <div class="card phantom"><a href="/phantom circuit">Phantom Circuit</a></div>
+        <div class="card celestial"><a href="/celestial harmony">Celestial Harmony</a></div>
+        <div class="card arcane"><a href="/arcane blossom">Arcane Blossom</a></div>
+      </div>
+
+      <button class="scroll-btn right"></button>
+    </div>
+  </div>
+
+  <script>
+    fetch('/api/username')
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.username) {
+          const initials = data.username
+            .trim()
+            .split(/\s+/)
+            .map((word) => word[0].toUpperCase())
+            .join('')
+            .slice(0, 2);
+
+          const loginBtn = document.getElementById('loginBtn');
+          const profileIcon = document.createElement('div');
+          profileIcon.className = 'profile-icon';
+          profileIcon.title = data.username;
+          profileIcon.textContent = initials;
+
+          profileIcon.addEventListener('click', () => {
+            window.location.href = '/logout';
+          });
+
+          loginBtn.replaceWith(profileIcon);
+        }
+      });
+  </script>
+
+  <script>
+    const searchInput = document.getElementById('searchInput');
+    const suggestions = document.getElementById('suggestions');
+
+    searchInput.addEventListener('input', () => {
+      const query = searchInput.value.trim();
+      if (query.length === 0) {
+        suggestions.innerHTML = '';
+        return;
+      }
+
+      fetch(`/api/search?query=${encodeURIComponent(query)}`)
+        .then((res) => res.json())
+        .then((results) => {
+          suggestions.innerHTML = '';
+          results.forEach((movie) => {
+            const link = document.createElement('a');
+            link.href = movie.url;
+            link.textContent = movie.title;
+            link.className = 'suggestion-item';
+            suggestions.appendChild(link);
+          });
+        });
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!suggestions.contains(e.target) && e.target !== searchInput) {
+        suggestions.innerHTML = '';
+      }
+    });
+  </script>
+
+  <script>
+    const scrollContainer = document.querySelector('.card-scroll');
+    const scrollLeftBtn = document.querySelector('.scroll-btn.left');
+    const scrollRightBtn = document.querySelector('.scroll-btn.right');
+
+    scrollLeftBtn.addEventListener('click', () => {
+      scrollContainer.scrollBy({ left: -300, behavior: 'smooth' });
+    });
+
+    scrollRightBtn.addEventListener('click', () => {
+      scrollContainer.scrollBy({ left: 300, behavior: 'smooth' });
+    });
+
+    function myFunction(x) {
+      x.classList.toggle('change');
+      x.classList.toggle('dropdown-content');
+      let dropdown = document.querySelector('.dropdown-list');
+      if (!dropdown) {
+        dropdown = document.createElement('div');
+        dropdown.className = 'dropdown-list';
+        dropdown.style.position = 'absolute';
+        dropdown.style.background = 'rgba(73, 230, 107, 0.4)';
+        dropdown.style.boxShadow = '0 2px 8px rgba(0,0,0,0.15)';
+        dropdown.style.padding = '10px';
+        dropdown.style.display = 'block';
+        dropdown.style.top = x.offsetTop + x.offsetHeight + 10 + 'px';
+        dropdown.style.zIndex = '9999';
+        dropdown.style.borderRadius = '10px';
+        dropdown.style.left = x.offsetLeft + 'px';
+        dropdown.innerHTML = `<a href="/all">All</a><br>`;
+        x.parentNode.appendChild(dropdown);
+      } else {
+        dropdown.style.display =
+          dropdown.style.display === 'block' ? 'none' : 'block';
+      }
+    }
+  </script>
+
+  <script>
+    document.querySelectorAll('.card-scroll').forEach((container) => {
+      container.addEventListener(
+        'wheel',
+        function (e) {
+          const rect = container.getBoundingClientRect();
+          const mouseY = e.clientY;
+          if (mouseY > rect.bottom - 20) {
+            e.preventDefault();
+            const speed = 1500;
+            const scrollAmount = e.deltaY > 0 ? speed : -speed;
+            container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+          }
+        },
+        { passive: false }
+      );
+    });
+  </script>
+</body>
+</html>

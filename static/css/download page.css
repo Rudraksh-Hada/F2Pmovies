@@ -1,0 +1,57 @@
+body{
+    background-color: rgb(210, 226, 209);
+}
+h1{
+    font-size: 30px;
+    color: #333;
+    text-align: left;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    text-decoration: underline;
+    font-family: cursive;
+    text-transform: capitalize;
+}
+p{
+    font-size: 20px;
+    text-align:center;
+    color: #555;
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 30px;
+    font-family: Arial, sans-serif;
+    text-transform: capitalize;
+    
+}
+.button {
+    background-color: #2cd331;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 20px;
+    cursor: pointer;
+    border-radius: 12px;
+    font-family: Arial, sans-serif;
+    display: block;        
+    margin: 20px auto; 
+        width: 120px;
+        padding-left: 10;
+        padding-right: 10;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+}
+
+.button:hover {
+    background-color: #95f0a8;
+    color: black;
+    transition: background-color 0.75s ease;
+}
+.download-message {
+    font-size: 20px;
+    color: #3b3333;
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 30px;
+    font-family: Arial, sans-serif;
+    text-transform: capitalize;
+}

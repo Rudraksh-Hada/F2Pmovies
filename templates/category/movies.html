@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Movie Categories</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/movies.css') }}">
+
+</head>
+<body>
+    <div class="header">
+        <header>
+            <div class="logo">
+                F2PMovies
+
+            </div>
+   <div class="nav-links" id="navLinks">
+        <a href="/web">Home</a>
+        <a href="/about us">About Us</a>
+        <a href="/contacts">Contact</a>
+        <a href="/login" id="loginBtn">Login</a>
+      </div>
+    </header> 
+        
+        <div class="search-bar">
+            <input type="text" placeholder="Search for movies or TV shows...">
+            <button type="submit">Search</button>
+        </div>
+    <h1>Movies</h1>
+
+
+<h2>Bollywood</h2>
+<div class="card-scroll-wrapper">
+  <button class="scroll-btn left" onclick="scrollCards(this, -1)"></button>
+  <div class="card-scroll">
+    <div class="card bol1"><a href=" /shadowed dreams ">Shadowed Dreams</a></div>
+    <div class="card bol2"><a href=" /monsoon melody ">Monsoon Melody</a></div>
+    <div class="card bol3"><a href=" /emerald city ">Emerald City</a></div>
+    <div class="card bol4"><a href=" /lotus in the mist ">Lotus in the Mist</a></div>
+    <div class="card bol5"><a href=" /saffron skies ">Saffron Skies</a></div>
+    <div class="card bol6"><a href=" /echoes of mumbai ">Echoes of Mumbai</a></div>
+    <div class="card bol7"><a href=" /golden promise ">Golden Promise</a></div>
+    <div class="card bol8"><a href=" /velvet dusk ">Velvet Dusk</a></div>
+    <div class="card bol9"><a href=" /royal rendezvous ">Royal Rendezvous</a></div>
+    <div class="card bol10"><a href=" /whispering hearts ">Whispering Hearts</a></div>
+    <div class="card bol11"><a href=" /urban raga ">Urban Raga</a></div>
+  </div>
+  <button class="scroll-btn right" onclick="scrollCards(this, 1)"></button>
+</div>
+
+<!-- 🎬 Hollywood -->
+<h2>Hollywood</h2>
+<div class="card-scroll-wrapper">
+  <button class="scroll-btn left" onclick="scrollCards(this, -1)"></button>
+  <div class="card-scroll">
+    <div class="card hol1"><a href=" /crimson moon ">Crimson Moon</a></div>
+    <div class="card hol2"><a href=" /stellar horizon ">Stellar Horizon</a></div>
+    <div class="card hol3"><a href=" /phantom protocol ">Phantom Protocol</a></div>
+    <div class="card hol4"><a href=" /iron legacy ">Iron Legacy</a></div>
+    <div class="card hol5"><a href=" /echo valley ">Echo Valley</a></div>
+    <div class="card hol6"><a href=" /quantum fate ">Quantum Fate</a></div>
+    <div class="card hol7"><a href=" /obsidian code ">Obsidian Code</a></div>
+    <div class="card hol8"><a href=" /last frontier ">Last Frontier</a></div>
+    <div class="card hol9"><a href=" /blue inferno ">Blue Inferno</a></div>
+    <div class="card hol10"><a href=" /zero hour ">Zero Hour</a></div>
+    <div class="card hol11"><a href=" /hidden spectrum ">Hidden Spectrum</a></div>
+  </div>
+  <button class="scroll-btn right" onclick="scrollCards(this, 1)"></button>
+</div>
+
+<!-- 🎥 South Indian Cinema -->
+<h2>South Indian Cinema</h2>
+<div class="card-scroll-wrapper">
+  <button class="scroll-btn left" onclick="scrollCards(this, -1)"></button>
+  <div class="card-scroll">
+    <div class="card south1"><a href=" /thunder veeran ">Thunder Veeran</a></div>
+    <div class="card south2"><a href=" /maaya chitra ">Maaya Chitra</a></div>
+    <div class="card south3"><a href=" /diamond dynasty ">Diamond Dynasty</a></div>
+    <div class="card south4"><a href=" /velvet vimanam ">Velvet Vimanam</a></div>
+    <div class="card south5"><a href=" /teakwood tales ">Teakwood Tales</a></div>
+    <div class="card south6"><a href=" /lotus warrior ">Lotus Warrior</a></div>
+    <div class="card south7"><a href=" /echoes of chennai ">Echoes of Chennai</a></div>
+    <div class="card south8"><a href=" /pearl horizon ">Pearl Horizon</a></div>
+    <div class="card south9"><a href=" /saffron saga ">Saffron Saga</a></div>
+    <div class="card south10"><a href=" /monsoon mirage ">Monsoon Mirage</a></div>
+  </div>
+  <button class="scroll-btn right" onclick="scrollCards(this, 1)"></button>
+</div>
+<script>
+  function scrollCards(button, direction) {
+    const scrollContainer = button.parentElement.querySelector('.card-scroll');
+    const scrollAmount = 320;
+    scrollContainer.scrollBy({
+      left: scrollAmount * direction,
+      behavior: 'smooth'
+    });
+  }
+</script>
+<script>
+  document.querySelectorAll('.card-scroll').forEach(container => {
+    container.addEventListener('wheel', function(e) {
+      const rect = container.getBoundingClientRect();
+      const mouseY = e.clientY;
+
+      // Trigger only if mouse is near the scrollbar (bottom 20px)
+      if (mouseY > rect.bottom - 20) {
+        e.preventDefault();
+
+        const speed = 1500; // higher = faster
+        const scrollAmount = e.deltaY > 0 ? speed : -speed;
+
+        container.scrollBy({
+          left: scrollAmount,
+          behavior: 'smooth' // use 'auto' if too slow
+        });
+      }
+    }, { passive: false });
+  });
+</script>
+
+
+</body>
+</html>

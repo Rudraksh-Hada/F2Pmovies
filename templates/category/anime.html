@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Anime Category</title>
+     <link rel="stylesheet" href="{{ url_for('static', filename='css/anime.css') }}">
+</head>
+
+<body>
+     
+     <header>
+            <div class="logo">
+                F2PMovies
+
+            </div>
+           <div class="nav-links">
+        <a href="/web">Home</a>
+        <a href="/about us">about us</a>
+        <a href="/contacts ">contact</a>
+        <a href="/login ">login</a>
+    </div>
+    </header> 
+        
+        <div class="search-bar">
+            <input type="text" placeholder="Search for movies or TV shows...">
+            <button type="submit">Search</button>
+        </div>
+<h1>Anime</h1>
+    <div class="card-scroll-wrapper">
+  <button class="scroll-btn left" onclick="scrollCards(this, -1)"></button>
+  <div class="card-scroll">
+    <div class="card kaiba"><a href="/kaiba">Kaiba</a></div>
+    <div class="card planet"><a href="/planet with">Planet With</a></div>
+    <div class="card houseki"><a href="/houseki no kuni">Houseki no Kuni</a></div>
+    <div class="card flip"><a href="/flip flappers">Flip Flappers</a></div>
+    <div class="card kyousougiga"><a href="/kyousougiga">Kyousougiga</a></div>
+    <div class="card haibane"><a href="/haibane renmei">Haibane Renmei</a></div>
+    <div class="card texhnolyze"><a href="/texhnolyze">Texhnolyze</a></div>
+    <div class="card ergo"><a href="/ergo proxy">Ergo Proxy</a></div>
+  </div>
+  <button class="scroll-btn right" onclick="scrollCards(this, 1)"></button>
+</div>
+
+<div class="card-scroll-wrapper">
+  <button class="scroll-btn left" onclick="scrollCards(this, -1)"></button>
+  <div class="card-scroll">
+    <div class="card penguin"><a href="/mawaru penguindrum">Mawaru Penguindrum</a></div>
+    <div class="card uchouten"><a href="/uchouten kazoku">Uchouten Kazoku</a></div>
+    <div class="card erin"><a href="/kemono no souja erin">Kemono no Souja Erin</a></div>
+    <div class="card astra"><a href="/kanata no astra">Kanata no Astra</a></div>
+    <div class="card tsuritama"><a href="/tsuritama">Tsuritama</a></div>
+    <div class="card kyoukai"><a href="/kyoukai no kanata">Kyoukai no Kanata</a></div>
+    <div class="card zara"><a href="/zarathustra">Zarathustra</a></div>
+    <div class="card yona"><a href="/akatsuki no yona">Akatsuki no Yona</a></div>
+  </div>
+  <button class="scroll-btn right" onclick="scrollCards(this, 1)"></button>
+</div>
+
+<div class="card-scroll-wrapper">
+  <button class="scroll-btn left" onclick="scrollCards(this, -1)"></button>
+  <div class="card-scroll">
+    <div class="card aria"><a href="/aria the animation">Aria the Animation</a></div>
+    <div class="card kanojo"><a href="/kareshi kanojo no jijou">Kareshi Kanojo no Jijou</a></div>
+    <div class="card egg"><a href="/angel's egg">Angel's Egg</a></div>
+    <div class="card lain"><a href="/serial experiments lain">Serial Experiments Lain</a></div>
+    <div class="card mononoke"><a href="/mononoke">Mononoke</a></div>
+    <div class="card dennou"><a href="/dennou coil">Dennou Coil</a></div>
+    <div class="card sonny"><a href="/sonny boy">Sonny Boy</a></div>
+    <div class="card kaiji"><a href="/kaiji">Kaiji</a></div>
+  </div>
+  <button class="scroll-btn right" onclick="scrollCards(this, 1)"></button>
+</div>
+
+<div class="card-scroll-wrapper">
+  <button class="scroll-btn left" onclick="scrollCards(this, -1)"></button>
+  <div class="card-scroll">
+    <div class="card planetes"><a href="/planetes">Planetes</a></div>
+    <div class="card samidare"><a href="/hoshi no samidare">Hoshi no Samidare</a></div>
+    <div class="card zorori"><a href="/kaiketsu zorori">Kaiketsu Zorori</a></div>
+    <div class="card dandy"><a href="/space dandy">Space Dandy</a></div>
+    <div class="card giant"><a href="/giant killing">Giant Killing</a></div>
+    <div class="card kemuri"><a href="/kemurikusa">Kemurikusa</a></div>
+    <div class="card akiba"><a href="/akiba's trip">Akiba's Trip</a></div>
+    <div class="card guyver"><a href="/kyoushoku soukou guyver">Kyoushoku Soukou Guyver</a></div>
+  </div>
+  <button class="scroll-btn right" onclick="scrollCards(this, 1)"></button>
+</div>
+<script>
+  function scrollCards(button, direction) {
+    const wrapper = button.closest('.card-scroll-wrapper');
+    const container = wrapper.querySelector('.card-scroll');
+    const scrollAmount = 300;
+    container.scrollBy({ left: direction * scrollAmount, behavior: 'smooth' });
+  }
+</script>
+<script>
+  document.querySelectorAll('.card-scroll').forEach(container => {
+    container.addEventListener('wheel', function(e) {
+      const rect = container.getBoundingClientRect();
+      const mouseY = e.clientY;
+
+      // Trigger only if mouse is near the scrollbar (bottom 20px)
+      if (mouseY > rect.bottom - 20) {
+        e.preventDefault();
+
+        const speed = 1500; // higher = faster
+        const scrollAmount = e.deltaY > 0 ? speed : -speed;
+
+        container.scrollBy({
+          left: scrollAmount,
+          behavior: 'smooth' // use 'auto' if too slow
+        });
+      }
+    }, { passive: false });
+  });
+</script>
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,225 @@
+body {
+  background-color: #11151c;
+  overflow-x: hidden;
+}
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: rgb(73, 230, 107);
+}
+
+.logo {
+  text-align: left;
+  background-color: rgb(73, 230, 107);
+  font-size: 30px;
+  text-transform: uppercase;
+  font-family: cursive;
+}
+
+.nav-links {
+  text-align: right;
+  font-size: 15px;
+  margin-right: 50px;
+  font-family: cursive;
+}
+
+.nav-links a {
+  color: black;
+  text-decoration: none;
+  margin: 5px;
+  text-transform: capitalize;
+}
+.nav-links a:hover {
+  color: rgba(255, 255, 255, 0.993);
+  transition: color 0.3s ease;}
+/* Search Bar */
+.search-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.search-bar input[type="text"] {
+  width: 300px;
+  padding: 10px;
+  border: 1px solid #000000;
+  border-radius: 100px;
+  background-color: rgb(212, 243, 218);
+}
+
+.search-bar button {
+  padding: 10px 20px;
+  background-color: rgb(73, 230, 107);
+  border: none;
+  border-radius: 100px;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.search-bar button:hover {
+  background-color: rgb(189, 238, 199);
+  color: rgb(0, 0, 0);
+  transition: background-color 0.75s ease;
+}
+
+h1{
+     color: rgb(255, 92, 87);
+    font-family:cursive;
+    text-align: center;
+    margin-top: 20px;
+}
+.card-scroll-wrapper {
+  position: relative;
+  max-width: 100%;
+  overflow: hidden;
+  padding: 20px 40px; /* for scroll arrows */
+}
+
+.card-scroll {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 20px 0;
+  scroll-behavior: smooth;
+  box-sizing: border-box;
+}
+
+.card-scroll::-webkit-scrollbar {
+  height: 6px;
+}
+.card-scroll::-webkit-scrollbar-thumb {
+  background: rgba(100, 100, 100, 0.4);
+  border-radius: 4px;
+}
+
+.card {
+  flex: 0 0 auto;
+  min-width: 280px;
+  height: 512px;
+  padding: 24px;
+  border-radius: 16px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+  transition: transform 0.2s ease;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+.card a {
+  color: white;
+  font-size: 1.2rem;
+  font-weight: bold;
+  font-family: cursive;
+  text-decoration: none;
+}
+
+/* Colored themes matching book titles */
+.shadowed   { background-color: #4B4453; }
+.silence    { background-color: #3E4E50; }
+.wilds      { background-color: #2E8B57; }
+.hearts     { background-color: #FF6F61; }
+.laugh      { background-color: #FFA500; }
+.broken     { background-color: #708090; }
+.galactic   { background-color: #483D8B; }
+.mystic     { background-color: #7B68EE; }
+.urban      { background-color: #607D8B; }
+.midnight   { background-color: #1C1C1C; }
+.vanished   { background-color: #5D3FD3; }
+.homebound  { background-color: #BC8F8F; }
+.pixel      { background-color: #00BFFF; }
+.hidden     { background-color: #2F4F4F; }
+.veil       { background-color: #6A5ACD; }
+.campus     { background-color: #20B2AA; }
+.frontline  { background-color: #2E3A59; }
+.echoes     { background-color: #8A2BE2; }
+.rhythm     { background-color: #DB7093; }
+.victory    { background-color: #228B22; }
+.pulse      { background-color: #DC143C; }
+.justice    { background-color: #2E8BC0; }
+.power      { background-color: #FF4500; }
+.crown      { background-color: #6B4226; }
+.covert     { background-color: #556B2F; }
+.dusty      { background-color: #D2B48C; }
+.roommates  { background-color: #FF69B4; }
+.spectral   { background-color: #708090; }
+.tales      { background-color: #CD853F; }
+.love       { background-color: #FFB6C1; }
+.maze       { background-color: #8B0000; }
+.growing    { background-color: #90EE90; }
+/* Live Show Color Themes */
+.aurora    { background-color: #ffb6d9; }
+.echoes,
+.echo      { background-color: #a29bfe; }
+.phantom   { background-color: #636e72; }
+.velvet    { background-color: #d63031; }
+.sonic     { background-color: #0984e3; }
+.stellar   { background-color: #74b9ff; }
+.moonlit   { background-color: #ffeaa7; color: #2d3436; }
+.urban     { background-color: #00cec9; }
+.galaxy    { background-color: #6c5ce7; }
+.skyline   { background-color: #55efc4; color: #2d3436; }
+.retro     { background-color: #fd79a8; }
+.zenith    { background-color: #ffeaa7; color: #2d3436; }
+.solstice  { background-color: #fdcb6e; color: #2d3436; }
+.nebula    { background-color: #a29bfe; }
+.limelight { background-color: #00b894; }
+
+
+/* Scroll arrows (styled as V-like shapes) */
+.scroll-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.scroll-btn::before {
+  content: "";
+  display: block;
+  width: 12px;
+  height: 12px;
+  border: solid rgb(73, 230, 107);
+  border-width: 0 4px 4px 0;
+  padding: 4px;
+  transform: rotate(45deg);
+}
+
+.scroll-btn.left {
+  left: 10px;
+}
+.scroll-btn.left::before {
+  transform: rotate(135deg);
+}
+
+.scroll-btn.right {
+  right: 10px;
+}
+.scroll-btn.right::before {
+  transform: rotate(-45deg);
+}
+.card-scroll::-webkit-scrollbar {
+  height: 16px; /* thicker horizontal scrollbar */
+}
+
+.card-scroll::-webkit-scrollbar-thumb {
+  background-color: rgba(73, 230, 107, 0.6);
+  border-radius: 10px;
+}
+
+.card-scroll::-webkit-scrollbar-track {
+  background-color: rgba(255, 255, 255, 0.1);
+}

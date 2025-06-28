@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>FIFA World Cup</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/download page.css') }}">
+</head>
+<body>
+    <h1>you are now downloading&emsp;FIFA World Cup</h1>
+    <p>click on download link below</p>
+    <a href="{{ url_for('static', filename='storage/movie.mkv') }}" class="button" download>Download</a>
+
+
+    <script>
+    document.querySelector('.button').addEventListener('click', function(e) {
+        e.preventDefault();
+        const link = this;
+        link.style.display = 'none';
+
+        const message = document.createElement('p');
+        message.className = 'download-message';
+        let seconds = 5;
+        message.textContent = `Your download will start in ${seconds} seconds...`;
+        document.body.appendChild(message);
+
+        const countdown = setInterval(function() {
+            seconds--;
+            if (seconds > 0) {
+                message.textContent = `Your download will start in ${seconds} seconds...`;
+            } else {
+                clearInterval(countdown);
+                const a = document.createElement('a');
+                a.href = link.href;
+                a.download = '';
+                document.body.appendChild(a);
+                a.click();
+                a.remove();
+
+                message.textContent = 'Thank you for downloading!';
+            }
+        }, 1000);
+    });
+    </script>
+</body>
+</html>
