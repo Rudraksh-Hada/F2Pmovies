@@ -1,18 +1,9 @@
 from flask import Flask, render_template, request, redirect, session, send_file, jsonify
 import csv
 import os
-from datetime import timedelta
 
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'
-app.permanent_session_lifetime = timedelta(days=30)  # Session lasts 30 days
-
-# ✅ Enforce login for all pages except login/register/static
-@app.before_request
-def require_login():
-    allowed_routes = ['login', 'register', 'static']
-    if request.endpoint not in allowed_routes and 'user' not in session:
-        return redirect('/login')
 
 
 # ✅ Home & Web both serve web.html (must be outside templates!)
@@ -54,7 +45,7 @@ def register():
     return jsonify({"status": "success", "redirect": "/"}) if request.is_json else redirect('/')
 
 
-# ✅ Login → makes session permanent
+# ✅ Login
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
@@ -65,7 +56,6 @@ def login():
                 reader = csv.DictReader(file)
                 for row in reader:
                     if row['Username'] == username and row['Password'] == password:
-                        session.permanent = True  # Stays for 30 days
                         session['user'] = username
                         return redirect('/web')
         except FileNotFoundError:
@@ -75,13 +65,13 @@ def login():
     return render_template('nav-links/login.html')
 
 
-# ✅ API to get username (can use in navbar JS)
+# ✅ API to get username
 @app.route('/api/username')
 def get_username():
     return jsonify({'username': session['user']}) if 'user' in session else jsonify({'username': None})
 
 
-# ✅ Logout → ends session
+# ✅ Logout
 @app.route('/logout')
 def logout():
     session.pop('user', None)
@@ -124,7 +114,9 @@ def sports():
     return render_template('category/sports.html')
 
 
-# ✅ Download pages
+
+
+
 names = [
     "nebula drift", "quantum shadows", "the last algorithm", "echoes of tomorrow",
     "starlight protocol", "phantom circuit", "shadowed whispers", "edge of silence",
@@ -171,6 +163,7 @@ names = [
     "saffron saga", "monsoon mirage", "celestial harmony", "arcane blossom"
 ]
 
+# Register 1 route for each
 for name in names:
     route_path = f'/{name}'
     endpoint_name = name.replace(' ', '_').replace("'", "").replace('&', 'and')
@@ -183,20 +176,21 @@ for name in names:
 
     app.add_url_rule(route_path, endpoint_name, make_view(template_path))
 
-
-# ✅ Search API
 @app.route('/api/search')
 def api_search():
     query = request.args.get('query', '').lower().strip()
     matches = []
+
     if query:
         for name in names:
             if query in name.lower():
                 matches.append({
-                    'title': name.title(),
-                    'url': f'/{name}'
+                    'title': name.title(),      # Capitalize nicely
+                    'url': f'/{name}'           # Direct link to your dynamic route
                 })
+
     return jsonify(matches)
+
 
 
 if __name__ == '__main__':
